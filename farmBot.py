@@ -30,6 +30,8 @@ def printData():
 
         print("Max ", maxSentence)
         print("Min ", minSentence)
+
+        cursor.close()
     except:
         print("Unexpected error:", sys.exc_info()[0])
 
@@ -39,18 +41,18 @@ while True:
     schedule.run_pending()
 
 
-# # Authenticate to Twitter
-# auth = tweepy.OAuthHandler(os.getenv("API_KEY"), os.getenv("API_SECRET"))
-# auth.set_access_token(os.getenv("ACCESS_TOKEN"), os.getenv("ACCESS_TOKEN_SECRET"))
+# Authenticate to Twitter
+auth = tweepy.OAuthHandler(os.getenv("API_KEY"), os.getenv("API_SECRET"))
+auth.set_access_token(os.getenv("ACCESS_TOKEN"), os.getenv("ACCESS_TOKEN_SECRET"))
 
-# # Create API object
-# api = tweepy.API(auth, wait_on_rate_limit=True,
-#     wait_on_rate_limit_notify=True)
+# Create API object
+api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
 
-# try:
-#     api.verify_credentials()
-#     print("Authentication OK")
-#     api.update_status(maxSentence)
-#     api.update_status(minSentence)
-# except Exception as e:
-#     print("An error occured: " + str(e))
+try:
+    api.verify_credentials()
+    print("Authentication OK")
+    api.update_status(maxSentence)
+    api.update_status(minSentence)
+except Exception as e:
+    print("An error occured: " + str(e))
