@@ -34,20 +34,18 @@ finally:
 
 
 
-# # Authenticate to Twitter
-# auth = tweepy.OAuthHandler("nDdKRZcNZqoBgeYPxpDulK8N7", 
-#     "L4LfXFTe7wqILZg9p1EMUFxyBIM1sQ5ukWvn4iJbU1n7AMKVJq")
-# auth.set_access_token("1432137371642912770-27xhfrhr5LjI8ZnItqYUEL5frfWnYo", 
-#     "7AJxjyXn13dcZzIbCSdMeR4RXAJeCKxRHXHG7u0mKc4Z4")
+# Authenticate to Twitter
+auth = tweepy.OAuthHandler(os.environ("API_KEY"), os.environ("API_SECRET"))
+auth.set_access_token(os.environ("ACCESS_TOKEN"),    os.environ("ACCESS_TOKEN_SECRET"))
 
-# # Create API object
-# api = tweepy.API(auth, wait_on_rate_limit=True,
-#     wait_on_rate_limit_notify=True)
+# Create API object
+api = tweepy.API(auth, wait_on_rate_limit=True,
+    wait_on_rate_limit_notify=True)
 
-# try:
-#     api.verify_credentials()
-#     print("Authentication OK")
-#     api.update_status(maxSentence)
-#     api.update_status(minSentence)
-# except Exception as e:
-#     print("An error occured: " + str(e))
+try:
+    api.verify_credentials()
+    print("Authentication OK")
+    api.update_status(maxSentence)
+    api.update_status(minSentence)
+except Exception as e:
+    print("An error occured: " + str(e))
