@@ -30,6 +30,8 @@ def postStatus(maxSentence, minSentence):
 
 def printData():
     try:
+
+        print("I'm working")
         DATABASE_URL = os.getenv('DATABASE_URL')
 
         con = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -60,7 +62,7 @@ def printData():
         print("Unexpected error:", sys.exc_info()[0])
 
 
-schedule.every().monday.at("10:36").do(printData)
+schedule.every().monday.at("15:50").do(printData)
 
 while True:
     schedule.run_pending()
