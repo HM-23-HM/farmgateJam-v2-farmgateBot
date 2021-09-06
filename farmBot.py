@@ -35,7 +35,7 @@ def printData():
     except:
         print("Unexpected error:", sys.exc_info()[0])
 
-schedule.every().monday.at("9:00").do(printData)
+schedule.every().monday.at("09:50").do(printData)
 
 while True:
     schedule.run_pending()
