@@ -48,7 +48,7 @@ def printData():
            f"SELECT low, commodity, parish, variety FROM farmdata WHERE low=(SELECT MIN(low) from farmdata WHERE date='{lastDate}') AND date='{lastDate}';")
         min = cursor.fetchone()
 
-        maxSentence = f"The {max[3]} variety of {max[1]} in {max[2]} is the most expensive commodity published in JAMIS' 'Week Ending - {formattedDate}' report, at ${max[0]} per kg."
+        maxSentence = f"The {max[3]} variety of {max[1]} in {max[2]} is the most expensive commodity published in JAMIS' Week Ending - {formattedDate}' report, at ${max[0]} per kg."
         minSentence = f"The {min[3]} variety of {min[1]} in {min[2]} is the least expensive commodity published in JAMIS' 'Week Ending - {formattedDate}' report, at ${min[0]} per kg."
 
         postStatus(maxSentence=maxSentence, minSentence=minSentence)
@@ -60,7 +60,7 @@ def printData():
         print("Unexpected error:", sys.exc_info()[0])
 
 
-schedule.every().monday.at("10:08").do(printData)
+schedule.every().monday.at("10:23").do(printData)
 
 while True:
     schedule.run_pending()
